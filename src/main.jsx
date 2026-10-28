@@ -2,18 +2,18 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router";
 import './index.css'
-import App from './App.jsx'
 import Root from './Components/Root/Root.jsx';
 import Home from './Components/Home/Home.jsx';
 import AppliedJobs from './Components/AppliedJobs/AppliedJobs.jsx';
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
+import DetailedJob from './Components/DetailedJob/DetailedJob.jsx';
 
 const router = createBrowserRouter([
 {
 
   path: '/',
   element: <Root></Root>,
-  errorElement: <ErrorPage></ErrorPage>,
+  errorElement: <ErrorPage></ErrorPage>, 
   children:[
     {
       path:'/',
@@ -23,6 +23,12 @@ const router = createBrowserRouter([
       path:'/applied',
       element: <AppliedJobs></AppliedJobs>
     },
+    {
+      path:'/job/:id',
+      element: <DetailedJob></DetailedJob>,
+      loader: () => fetch('jobs.json')
+      
+    }
 
   ]
 
